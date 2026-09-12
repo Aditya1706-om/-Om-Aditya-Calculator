@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculator | Om Aditya</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Main Calculator Container -->
+    <div class="calculator">
+
+        <!-- Calculator Header -->
+        <div class="calculator-header">
+            <h1>Calculator</h1>
+            <p>SkillCraft Technology — Task 02 Alternative</p>
+        </div>
+
+
+        <!-- Display Screen -->
+        <div class="display-container">
+
+            <div id="previous-display"></div>
+
+            <div id="display">0</div>
+
+        </div>
+
+
+        <!-- Calculator Buttons -->
+        <div class="buttons">
+
+            <!-- First Row -->
+            <button class="btn clear" id="clear">AC</button>
+
+            <button class="btn operator" id="delete">DEL</button>
+
+            <button class="btn operator" data-value="%">%</button>
+
+            <button class="btn operator" data-value="/">÷</button>
+
+
+            <!-- Second Row -->
+            <button class="btn number" data-value="7">7</button>
+
+            <button class="btn number" data-value="8">8</button>
+
+            <button class="btn number" data-value="9">9</button>
+
+            <button class="btn operator" data-value="*">×</button>
+
+
+            <!-- Third Row -->
+            <button class="btn number" data-value="4">4</button>
+
+            <button class="btn number" data-value="5">5</button>
+
+            <button class="btn number" data-value="6">6</button>
+
+            <button class="btn operator" data-value="-">−</button>
+
+
+            <!-- Fourth Row -->
+            <button class="btn number" data-value="1">1</button>
+
+            <button class="btn number" data-value="2">2</button>
+
+            <button class="btn number" data-value="3">3</button>
+
+            <button class="btn operator" data-value="+">+</button>
+
+
+            <!-- Fifth Row -->
+            <button class="btn number zero" data-value="0">0</button>
+
+            <button class="btn number" data-value=".">.</button>
+
+            <button class="btn equals" id="equals">=</button>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer>
+            Designed & Developed by <strong>Om Aditya</strong>
+        </footer>
+
+    </div>
+
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+</html>
