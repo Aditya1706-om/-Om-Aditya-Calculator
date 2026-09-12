@@ -1,101 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Neon Glass Calculator | Om Aditya</title>
+    <meta name="description" content="A sleek, modern glassmorphic calculator with dynamic animations, themes, and sound effects. Built for SkillCraft Technology Task 02.">
 
-    <title>Calculator | Om Aditya</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- CSS File -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Main Calculator Container -->
-    <div class="calculator">
-
-        <!-- Calculator Header -->
-        <div class="calculator-header">
-            <h1>Calculator</h1>
-            <p>SkillCraft Technology — Task 02 Alternative</p>
-        </div>
-
-
-        <!-- Display Screen -->
-        <div class="display-container">
-
-            <div id="previous-display"></div>
-
-            <div id="display">0</div>
-
-        </div>
-
-
-        <!-- Calculator Buttons -->
-        <div class="buttons">
-
-            <!-- First Row -->
-            <button class="btn clear" id="clear">AC</button>
-
-            <button class="btn operator" id="delete">DEL</button>
-
-            <button class="btn operator" data-value="%">%</button>
-
-            <button class="btn operator" data-value="/">÷</button>
-
-
-            <!-- Second Row -->
-            <button class="btn number" data-value="7">7</button>
-
-            <button class="btn number" data-value="8">8</button>
-
-            <button class="btn number" data-value="9">9</button>
-
-            <button class="btn operator" data-value="*">×</button>
-
-
-            <!-- Third Row -->
-            <button class="btn number" data-value="4">4</button>
-
-            <button class="btn number" data-value="5">5</button>
-
-            <button class="btn number" data-value="6">6</button>
-
-            <button class="btn operator" data-value="-">−</button>
-
-
-            <!-- Fourth Row -->
-            <button class="btn number" data-value="1">1</button>
-
-            <button class="btn number" data-value="2">2</button>
-
-            <button class="btn number" data-value="3">3</button>
-
-            <button class="btn operator" data-value="+">+</button>
-
-
-            <!-- Fifth Row -->
-            <button class="btn number zero" data-value="0">0</button>
-
-            <button class="btn number" data-value=".">.</button>
-
-            <button class="btn equals" id="equals">=</button>
-
-        </div>
-
-
-        <!-- Footer -->
-        <footer>
-            Designed & Developed by <strong>Om Aditya</strong>
-        </footer>
-
+    <!-- Animated Ambient Background Orbs -->
+    <div class="ambient-background" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="grid-overlay"></div>
     </div>
 
+    <!-- Main Calculator Wrapper -->
+    <main class="calculator-wrapper">
+        <div class="calculator" id="calculator" role="region" aria-label="Calculator">
+
+            <!-- Top Utility Bar -->
+            <div class="utility-bar">
+                <span class="brand-pill">
+                    <span class="pill-dot"></span>
+                    Task 02
+                </span>
+
+                <div class="utility-actions">
+                    <!-- History Toggle Button -->
+                    <button class="icon-btn" id="history-toggle-btn" title="View History" aria-label="View calculation history">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </button>
+
+                    <!-- Sound Toggle Button -->
+                    <button class="icon-btn" id="sound-toggle-btn" title="Toggle Sound (Muted)" aria-label="Toggle sound effects">
+                        <svg id="sound-icon-on" class="sound-icon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        <svg id="sound-icon-off" class="sound-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Theme Switcher Button -->
+                    <button class="icon-btn" id="theme-toggle-btn" title="Change Theme" aria-label="Switch visual theme">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calculator Header -->
+            <header class="calculator-header">
+                <h1 class="header-title">CALCULATOR</h1>
+                <p class="header-subtitle">SkillCraft Technology</p>
+            </header>
+
+            <!-- Display Screen -->
+            <div class="display-container" id="display-container">
+                <button class="copy-btn" id="copy-btn" title="Copy result to clipboard" aria-label="Copy result">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+
+                <div id="previous-display" aria-live="polite"></div>
+                <div id="display" aria-live="polite">0</div>
+            </div>
+
+            <!-- Calculator Buttons -->
+            <div class="buttons">
+                <!-- First Row -->
+                <button class="btn clear" id="clear" aria-label="All Clear">AC</button>
+                <button class="btn operator del-btn" id="delete" aria-label="Delete">DEL</button>
+                <button class="btn operator" data-value="%" aria-label="Percentage">%</button>
+                <button class="btn operator" data-value="/" aria-label="Divide">÷</button>
+
+                <!-- Second Row -->
+                <button class="btn number" data-value="7">7</button>
+                <button class="btn number" data-value="8">8</button>
+                <button class="btn number" data-value="9">9</button>
+                <button class="btn operator" data-value="*" aria-label="Multiply">×</button>
+
+                <!-- Third Row -->
+                <button class="btn number" data-value="4">4</button>
+                <button class="btn number" data-value="5">5</button>
+                <button class="btn number" data-value="6">6</button>
+                <button class="btn operator" data-value="-" aria-label="Subtract">−</button>
+
+                <!-- Fourth Row -->
+                <button class="btn number" data-value="1">1</button>
+                <button class="btn number" data-value="2">2</button>
+                <button class="btn number" data-value="3">3</button>
+                <button class="btn operator" data-value="+" aria-label="Add">+</button>
+
+                <!-- Fifth Row -->
+                <button class="btn number zero" data-value="0">0</button>
+                <button class="btn number" data-value=".">.</button>
+                <button class="btn equals" id="equals" aria-label="Equals">=</button>
+            </div>
+
+            <!-- Footer -->
+            <footer class="calculator-footer">
+                <span>Designed &amp; Developed by <strong>Om Aditya</strong></span>
+            </footer>
+
+            <!-- History Drawer Modal -->
+            <div class="history-drawer" id="history-drawer" aria-hidden="true">
+                <div class="history-header">
+                    <div class="history-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>History</span>
+                    </div>
+                    <div class="history-actions">
+                        <button class="text-btn" id="clear-history-btn" title="Clear all history">Clear</button>
+                        <button class="icon-btn-close" id="close-history-btn" title="Close history" aria-label="Close history">✕</button>
+                    </div>
+                </div>
+                <div class="history-list" id="history-list">
+                    <p class="history-empty">No calculations yet</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard!</div>
 
     <!-- JavaScript File -->
     <script src="script.js"></script>
-
 </body>
 </html>
